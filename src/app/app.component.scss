@@ -1,0 +1,143 @@
+.container {
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f5f5;
+}
+
+.card {
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10em;
+  padding: 0 20px;
+
+  .dropdown {
+    position: relative;
+    width: 300px;
+    height: 50px;
+  }
+
+  .dropdown::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: 28px;
+    width: 12px;
+    height: 2px;
+    background: #555;
+    z-index: 10;
+    transform: rotate(40deg);
+    transition: 0.5s;
+  }
+
+  .dropdown.active::before {
+    right: 20px;
+  }
+
+  .dropdown::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 12px;
+    height: 2px;
+    background: #555;
+    z-index: 10;
+    transform: rotate(-40deg);
+    transition: 0.5s;
+  }
+
+  .dropdown.active::after {
+    right: 28px;
+  }
+
+  .dropdown .dropdown-input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img{
+      width: 30px;
+      height: 30px;
+    }
+
+    input{
+      width: 50%;
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 16px;
+      color: #555;
+      text-overflow: ellipsis;
+      pointer-events: none;
+    }
+  }
+
+  .dropdown .option {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    height: 20em;
+    overflow-y: scroll;
+  }
+
+  .dropdown.active .option {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dropdown .option .option-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .dropdown .option .option-item:hover {
+    background-color: #d5d5d5;
+  }
+
+  .dropdown .option .option-item img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dropdown .option .option-item span span {
+    color: #555;
+  }
+}
