@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   refreshList() {
     this.currenciesService.getCurrencies().subscribe((data: any) => {
       this.currenciesService.currencyList = data;
-      this.selectedItem = this.currenciesService.currencyList[145];
+      this.selectedItem = this.currenciesService.currencyList[164];
     });
   }
 
