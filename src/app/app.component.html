@@ -11,15 +11,31 @@
           name="dropdown"
           [(ngModel)]="selectedItem.name"
         />
+        <input
+          type="text"
+          placeholder="Type to search..."
+          id="searchbox"
+          [(ngModel)]="searchTerm"
+          (input)="searchCurrency()"
+        />
       </div>
-      <div class="option">
+      <div class="option" [ngClass]="currenciesService.currencyList.length === 0 ? 'no-result' : ''">
+        <ng-container *ngIf="currenciesService.currencyList.length !== 0">
+          <div
+            class="option-item"
+            *ngFor="let currency of currenciesService.currencyList"
+            (click)="selectCurrency(currency)"
+          >
+            <img [src]="currency.flag" alt="Currency Flag" />
+            <span
+              >{{ currency.code }} - <span>{{ currency.name }}</span></span
+            >
+          </div>
+        </ng-container>
         <div
-          class="option-item"
-          *ngFor="let currency of currenciesService.currencyList"
-          (click)="selectCurrency(currency)"
+          *ngIf="currenciesService.currencyList.length === 0"
         >
-          <img [src]="currency.flag" alt="Currency Flag" />
-          <span>{{ currency.code }} - <span>{{ currency.name }}</span></span>
+          <span>No results found</span>
         </div>
       </div>
     </div>
