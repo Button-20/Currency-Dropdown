@@ -13,18 +13,4 @@ export class CurrenciesService {
     return this.http.get('assets/json/currencies-with-flags.json');
   }
 
-  searchCurrencies(searchTerm: string) {
-    if (!searchTerm) {
-      this.getCurrencies().subscribe((data: any) => {
-        this.currencyList = data;
-      });
-    }
-
-    return this.currencyList.filter(
-      (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.country.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }
 }

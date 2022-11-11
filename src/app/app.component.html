@@ -16,27 +16,22 @@
           placeholder="Type to search..."
           id="searchbox"
           [(ngModel)]="searchTerm"
-          (input)="searchCurrency()"
         />
       </div>
-      <div class="option" [ngClass]="currenciesService.currencyList.length === 0 ? 'no-result' : ''">
-        <ng-container *ngIf="currenciesService.currencyList.length !== 0">
-          <div
-            class="option-item"
-            *ngFor="let currency of currenciesService.currencyList"
-            (click)="selectCurrency(currency)"
-          >
+      <div class="option">
+        <ng-container
+          *ngFor="
+            let currency of currenciesService.currencyList
+              | searchFilter: searchTerm
+          "
+        >
+          <div class="option-item" (click)="selectCurrency(currency)">
             <img [src]="currency.flag" alt="Currency Flag" />
             <span
               >{{ currency.code }} - <span>{{ currency.name }}</span></span
             >
           </div>
         </ng-container>
-        <div
-          *ngIf="currenciesService.currencyList.length === 0"
-        >
-          <span>No results found</span>
-        </div>
       </div>
     </div>
   </div>

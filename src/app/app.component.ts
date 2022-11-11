@@ -11,21 +11,32 @@ export class AppComponent implements OnInit {
   searchTerm: string = '';
 
   constructor(public currenciesService: CurrenciesService) {
+    this.refreshList();
+  }
+
+  ngOnInit() {}
+
+  refreshList() {
     this.currenciesService.getCurrencies().subscribe((data: any) => {
       this.currenciesService.currencyList = data;
       this.selectedItem = this.currenciesService.currencyList[145];
     });
   }
 
-  ngOnInit() {}
-
   dropDownClick() {
+    // Get the dropdown element
     let dropDown = document.querySelector('.dropdown') as HTMLElement;
+    // Get the search input element
     let searchbox = document.querySelector('#searchbox') as HTMLElement;
-    let dropdownInput = document.querySelector('.dropdown-input') as HTMLElement;
+    // Get the dropdown input to hide inner elements
+    let dropdownInput = document.querySelector(
+      '.dropdown-input'
+    ) as HTMLElement;
     dropDown.classList.toggle('active');
     dropdownInput.classList.toggle('active');
+    // Reset the search input
     this.searchTerm = '';
+    // Set focus on search input
     searchbox.focus();
   }
 
@@ -35,9 +46,4 @@ export class AppComponent implements OnInit {
     dropDown.classList.remove(...'active');
   }
 
-  searchCurrency() {
-    this.currenciesService.currencyList = this.currenciesService.searchCurrencies(
-      this.searchTerm
-    );
-  }
 }
