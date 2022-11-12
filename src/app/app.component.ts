@@ -38,6 +38,14 @@ export class AppComponent implements OnInit {
     this.searchTerm = '';
     // Set focus on search input
     searchbox.focus();
+
+    // Close the dropdown if the user clicks outside of it
+    document.addEventListener('click', function (e: any) {
+      if (!dropDown.contains(e.target)) {
+        dropDown.classList.remove('active');
+        dropdownInput.classList.remove('active');
+      }
+    });
   }
 
   selectCurrency(item: any) {
@@ -45,5 +53,4 @@ export class AppComponent implements OnInit {
     let dropDown = document.querySelector('.dropdown') as HTMLElement;
     dropDown.classList.remove(...'active');
   }
-
 }
